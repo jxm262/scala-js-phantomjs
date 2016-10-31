@@ -3,36 +3,19 @@
 This is a slightly modified slimmed down version of [https://github.com/sjrd/scala-js-example-app](https://github.com/sjrd/scala-js-example-app)
 [Scala.js](http://www.scala-js.org/).
 
-## Get started
 
-To get started, open `sbt` in this example project, and execute the task
-`fastOptJS`. This creates the file `target/scala-2.11/example-fastopt.js`.
-You can now open `index-fastopt.html` in your favorite Web browser!
+## Running the test command will give the following error  
 
-During development, it is useful to use `~fastOptJS` in sbt, so that each
-time you save a source file, a compilation of the project is triggered.
-Hence only a refresh of your Web page is needed to see the effects of your
-changes.
-
-## Run the tests
-
-To run the test suite, execute the task `test`. If you have installed
-[Node.js](http://nodejs.org/), you can use that runtime to run the tests,
-which is faster:
-
-    > set scalaJSStage in Global := FastOptStage
-    > test
-
-## The fully optimized version
-
-For ultimate code size reduction, use `fullOptJS`. This will take several
-seconds to execute, so typically you only use this for the final, production
-version of your application. While `index-fastopt.html` refers to the
-JavaScript emitted by `fastOptJS`, `index.html` refers to the optimized
-JavaScript emitted by `fullOptJS`.
-
-If Node.js is installed, the tests can also be run in their fully optimized
-version with:
-
-    > set scalaJSStage in Global := FullOptStage
-    > test
+```
+[info] 1/2     example.ScalaJSExampleTest.ScalaJSExample		Success
+[info] 2/2     example.ScalaJSExampleTest		Success
+java.util.concurrent.TimeoutException: Futures timed out after [4841340619 nanoseconds]
+	at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:219)
+	at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:223)
+	at scala.concurrent.Await$$anonfun$result$1.apply(package.scala:107)
+	at scala.concurrent.BlockContext$DefaultBlockContext$.blockOn(BlockContext.scala:53)
+	
+[error] (test:executeTests) java.util.concurrent.TimeoutException: Futures timed out after [4841340619 nanoseconds]
+[error] Total time: 21 s, completed Oct 31, 2016 10:28:42 AM
+...
+```
